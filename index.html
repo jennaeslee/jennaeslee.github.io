@@ -1,0 +1,264 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Atmospheric science, weather prediction, and data science portfolio.">
+  <title>Your Name | Weather & Data</title>
+
+  <style>
+    :root {
+      --bg: #0b1728;
+      --panel: #12243a;
+      --blue: #55a5ff;
+      --text: #edf4ff;
+      --muted: #a8bad0;
+      --border: #29415c;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, sans-serif;
+      line-height: 1.7;
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container {
+      width: min(100% - 40px, 1000px);
+      margin: auto;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 24px 0;
+    }
+
+    nav strong { font-size: 1.1rem; }
+
+    nav div {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 0.9rem;
+    }
+
+    .hero { padding: 90px 0 75px; }
+
+    .eyebrow {
+      color: var(--blue);
+      font-size: 0.85rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      line-height: 1.08;
+      margin: 18px 0;
+      letter-spacing: -2px;
+    }
+
+    h2 { font-size: 1.8rem; }
+    h3 { margin-bottom: 6px; }
+
+    .intro {
+      color: var(--muted);
+      max-width: 650px;
+      font-size: 1.1rem;
+    }
+
+    .button {
+      display: inline-block;
+      margin: 18px 10px 0 0;
+      padding: 10px 17px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .primary {
+      background: var(--blue);
+      color: #071526;
+      font-weight: bold;
+    }
+
+    section { padding: 45px 0; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .tag {
+      display: inline-block;
+      margin: 5px 5px 0 0;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: #203b59;
+      color: #cfe4ff;
+      font-size: 0.8rem;
+    }
+
+    .muted { color: var(--muted); }
+
+    footer {
+      margin-top: 50px;
+      padding: 28px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 620px) {
+      nav { align-items: flex-start; flex-direction: column; }
+      .hero { padding-top: 55px; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="container">
+    <nav>
+      <strong>Your Name</strong>
+      <div>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <div class="hero">
+      <p class="eyebrow">ATMOSPHERIC SCIENCE · DATA SCIENCE</p>
+      <h1>Weather<br>meets Data.</h1>
+      <p class="intro">
+        I'm a master's student in Atmospheric and Oceanic Sciences
+        at the University of Wisconsin–Madison, interested in
+        numerical weather prediction, machine learning, and
+        data-driven weather risk analysis.
+      </p>
+      <a class="button primary" href="#projects">Explore Projects ↓</a>
+      <a class="button" href="#contact">Get in Touch</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="about">
+      <p class="eyebrow">01 / ABOUT</p>
+      <h2>About Me</h2>
+      <p class="muted">
+        My interests lie at the intersection of atmospheric science,
+        computational methods, and quantitative analysis.
+        I enjoy using Python to explore weather data and develop
+        approaches to forecast post-processing and weather risk.
+      </p>
+      <p class="muted">
+        My long-term goal is to connect weather science with
+        data-driven decisions in areas such as energy demand
+        and financial risk.
+      </p>
+    </section>
+
+    <section id="projects">
+      <p class="eyebrow">02 / SELECTED WORK</p>
+      <h2>Projects</h2>
+
+      <div class="grid">
+        <article class="card">
+          <h3>Weather Forecast Post-Processing</h3>
+          <p class="muted">WxChallenge · Python</p>
+          <p>
+            Developing and evaluating a post-processing approach
+            to correct biases in numerical weather prediction
+            forecasts.
+          </p>
+          <span class="tag">Forecasting</span>
+          <span class="tag">Bias Correction</span>
+          <span class="tag">Python</span>
+          <p class="muted">
+            Project status: Ongoing
+          </p>
+          <!-- Add a GitHub project link here when ready. -->
+        </article>
+
+        <article class="card">
+          <h3>Heating & Cooling Degree Days</h3>
+          <p class="muted">Climate Data · Python</p>
+          <p>
+            Analyzing long-term heating and cooling demand
+            indicators across U.S. cities to investigate climate
+            trends, variability, and temperature-related risk.
+          </p>
+          <span class="tag">Climate Data</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">Energy Risk</span>
+          <p class="muted">
+            Project status: In Progress
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills">
+      <p class="eyebrow">03 / TOOLKIT</p>
+      <h2>Technical Skills</h2>
+      <div class="card">
+        <span class="tag">Python</span>
+        <span class="tag">NumPy</span>
+        <span class="tag">Pandas</span>
+        <span class="tag">Matplotlib</span>
+        <span class="tag">Numerical Weather Prediction</span>
+        <span class="tag">Data Analysis</span>
+      </div>
+      <p class="muted">
+        Add or remove skills to reflect your actual experience.
+      </p>
+    </section>
+
+    <section id="contact">
+      <p class="eyebrow">04 / CONTACT</p>
+      <h2>Let's Connect</h2>
+      <p class="muted">
+        Interested in weather prediction, data science,
+        and weather-related risk.
+      </p>
+      <p>
+        <a href="https://www.linkedin.com/" target="_blank"
+           rel="noopener noreferrer">LinkedIn ↗</a>
+        &nbsp; · &nbsp;
+        <a href="https://github.com/" target="_blank"
+           rel="noopener noreferrer">GitHub ↗</a>
+      </p>
+      <p class="muted">
+        Replace these links with your own profile URLs.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Your Name · Built with HTML & CSS
+    </div>
+  </footer>
+</body>
+</html>
