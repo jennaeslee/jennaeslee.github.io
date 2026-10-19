@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <title>Jenna EunSeo Lee | Weather & Data</title>
 <meta name="description" content="Projects in numerical weather prediction, climate data, and weather risk by Jenna EunSeo Lee.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -140,6 +141,19 @@ footer{padding:28px 0 48px;color:var(--muted);font-size:14px}
 .pair .fig figcaption{padding:10px 16px;font-size:13px}
 @media (max-width:720px){.pair{grid-template-columns:1fr}.pair .fig+.fig{border-left:0;border-top:1px solid var(--line)}}
 
+/* hero: isobars draw in once, then drift slightly with the pointer */
+.hero svg path,.hero svg circle{fill:none;stroke:var(--accent);stroke-width:1.2;stroke-dasharray:1;stroke-dashoffset:1;
+  animation:draw 2.6s cubic-bezier(.4,0,.2,1) forwards;animation-delay:calc(var(--i,0)*.28s);
+  transform:translate(calc(var(--mx,0)*var(--k,1)*1px),calc(var(--my,0)*var(--k,1)*1px));transition:transform .6s ease-out}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.hero svg path,.hero svg circle{animation:none;stroke-dashoffset:0;transition:none}}
+/* nav: current section + theme toggle */
+nav a[aria-current="true"]{color:var(--ink);text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:8px}
+section{scroll-margin-top:56px}
+.theme-toggle{margin-left:18px;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:none;color:var(--muted);cursor:pointer;display:inline-grid;place-items:center;vertical-align:middle}
+.theme-toggle:hover{color:var(--ink);border-color:var(--muted)}
+@media (max-width:640px){.theme-toggle{margin-left:10px;width:30px;height:30px}.brand{font-size:16px}nav{white-space:nowrap}}
+  
 </style>
 </head>
 <body>
@@ -152,6 +166,7 @@ footer{padding:28px 0 48px;color:var(--muted);font-size:14px}
       <a href="#projects">Projects</a>
       <a href="#notes">Notes</a>
       <a href="#contact">Contact</a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor"/></svg></button>
     </nav>
   </div>
 </header>
@@ -161,14 +176,14 @@ footer{padding:28px 0 48px;color:var(--muted);font-size:14px}
 <!-- HERO: isobar-style contour lines are the one decorative element -->
 <div class="hero">
   <svg viewBox="0 0 620 520" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
-    <path d="M20 430C120 380 170 300 260 290S430 330 520 250 610 120 600 40"/>
-    <path d="M20 470C140 420 200 340 280 330S450 370 545 290 620 170 615 80"/>
-    <path d="M20 390C100 340 150 260 240 250S410 290 495 210 585 80 575 0"/>
-    <path d="M40 510C170 460 230 380 305 370S470 410 570 330 625 220 620 120"/>
-    <path d="M10 350C80 300 130 220 220 210S390 250 470 170 560 40 550-30"/>
-    <circle cx="330" cy="215" r="34" style="fill:none"/>
-    <circle cx="330" cy="215" r="64" style="fill:none"/>
-    <circle cx="330" cy="215" r="98" style="fill:none"/>
+    <path pathLength="1" style="--i:0;--k:0.50" d="M20 430C120 380 170 300 260 290S430 330 520 250 610 120 600 40"/>
+    <path pathLength="1" style="--i:1;--k:0.70" d="M20 470C140 420 200 340 280 330S450 370 545 290 620 170 615 80"/>
+    <path pathLength="1" style="--i:2;--k:0.90" d="M20 390C100 340 150 260 240 250S410 290 495 210 585 80 575 0"/>
+    <path pathLength="1" style="--i:3;--k:1.10" d="M40 510C170 460 230 380 305 370S470 410 570 330 625 220 620 120"/>
+    <path pathLength="1" style="--i:4;--k:1.30" d="M10 350C80 300 130 220 220 210S390 250 470 170 560 40 550-30"/>
+    <circle pathLength="1" style="--i:5;--k:1.50" cx="330" cy="215" r="34"/>
+    <circle pathLength="1" style="--i:6;--k:1.70" cx="330" cy="215" r="64"/>
+    <circle pathLength="1" style="--i:7;--k:1.90" cx="330" cy="215" r="98"/>
   </svg>
   <div class="wrap">
     <h1>Weather meets data.</h1>
@@ -340,5 +355,39 @@ footer{padding:28px 0 48px;color:var(--muted);font-size:14px}
   <div class="wrap">© 2026 Jenna EunSeo Lee</div>
 </footer>
 
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('theme-toggle');
+  function isDark(){return root.dataset.theme?root.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches}
+  btn.setAttribute('aria-pressed',isDark());
+  btn.addEventListener('click',function(){
+    var next=isDark()?'light':'dark';
+    root.dataset.theme=next;
+    btn.setAttribute('aria-pressed',next==='dark');
+    try{localStorage.setItem('theme',next)}catch(e){}
+  });
+
+  var links=[].slice.call(document.querySelectorAll('nav a[href^="#"]')), byId={};
+  links.forEach(function(a){byId[a.getAttribute('href').slice(1)]=a});
+  function mark(a){links.forEach(function(l){l.removeAttribute('aria-current')});if(a)a.setAttribute('aria-current','true')}
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting)mark(byId[e.target.id])});
+    },{rootMargin:'-45% 0px -50% 0px'});
+    Object.keys(byId).forEach(function(id){var s=document.getElementById(id);if(s)io.observe(s)});
+    addEventListener('scroll',function(){if(scrollY<120)mark(null)},{passive:true});
+  }
+
+  var hero=document.querySelector('.hero'), svg=hero&&hero.querySelector('svg');
+  if(svg&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+    hero.addEventListener('pointermove',function(e){
+      var r=hero.getBoundingClientRect();
+      svg.style.setProperty('--mx',((e.clientX-r.left)/r.width-.5)*-24);
+      svg.style.setProperty('--my',((e.clientY-r.top)/r.height-.5)*-16);
+    });
+  }
+})();
+</script>
+  
 </body>
 </html>
