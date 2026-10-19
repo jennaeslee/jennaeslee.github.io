@@ -109,6 +109,16 @@ footer{padding:28px 0 48px;color:var(--muted);font-size:14px}
   .fig figcaption{padding:10px 20px}
   .log li{grid-template-columns:1fr;gap:2px}
 }
+
+.bars{margin:0;padding:18px 28px 8px;list-style:none;border-top:1px solid var(--line)}
+.bars li{display:grid;grid-template-columns:104px 1fr 44px;gap:12px;align-items:center;font-size:14px;margin:7px 0}
+.bars .tr{height:10px;background:var(--bg);border-radius:5px;overflow:hidden}
+.bars .tr i{display:block;height:100%;background:var(--line)}
+.bars li.top .tr i{background:var(--accent)}
+.bars b{font-weight:500;text-align:right}
+.bars-note{padding:0 28px 14px;margin:0;font-size:14px;color:var(--muted)}
+.fig.map img{max-width:560px;margin:0 auto}
+@media (max-width:640px){.bars{padding-left:20px;padding-right:20px}.bars li{grid-template-columns:84px 1fr 40px}.bars-note{padding-left:20px;padding-right:20px}}
 </style>
 </head>
 <body>
@@ -220,50 +230,57 @@ footer{padding:28px 0 48px;color:var(--muted);font-size:14px}
     <!-- Project 3 -->
     <article class="proj">
       <div class="proj-body">
-        <span class="badge done"><i></i>Completed (coursework)</span>
+        <span class="badge done"><i></i>Completed · GEO 388, Spring 2026</span>
         <h3>Wildfire risk &amp; evacuation priority, California</h3>
-        <p class="lede">A composite index that flags where wildfire hazard, population, and limited roads overlap.</p>
-        <ul class="tags"><li>ArcGIS Pro</li><li>Spatial analysis</li><li>Risk index</li></ul>
+        <p class="lede">A composite index that combines wildfire hazard and population density to rank California’s 58 counties by disaster-management priority.</p>
+        <ul class="tags"><li>ArcGIS Pro</li><li>Weighted overlay</li><li>Zonal statistics</li><li>Risk index</li></ul>
       </div>
-      <figure class="fig">
-        <!-- Replace with a map export, e.g. images/wildfire-risk-map.png -->
-        <div class="ph">Add a figure: risk index map<br>(save as images/wildfire-risk-map.png)</div>
-        <figcaption>Composite risk index, including the Sierra Nevada foothills.</figcaption>
+      <figure class="fig map">
+        <img src="images/wildfire-risk-map.jpg" alt="Map of California showing the composite risk index from 1 (green) to 5 (red), with roads and historical fire perimeters" loading="lazy">
+        <figcaption>Composite Risk Index (1–5) with primary and secondary roads and historical fire perimeters.</figcaption>
       </figure>
+      <ul class="bars" aria-label="Top 10 counties by mean composite risk index"><li class="top"><span>Calaveras</span><span class="tr"><i style="width:68.5%"></i></span><b>3.42</b></li><li class="top"><span>El Dorado</span><span class="tr"><i style="width:68.4%"></i></span><b>3.42</b></li><li class="top"><span>Amador</span><span class="tr"><i style="width:68.3%"></i></span><b>3.42</b></li><li class="top"><span>Nevada</span><span class="tr"><i style="width:66.7%"></i></span><b>3.33</b></li><li class=""><span>Orange</span><span class="tr"><i style="width:64.8%"></i></span><b>3.24</b></li><li class=""><span>Santa Cruz</span><span class="tr"><i style="width:64.7%"></i></span><b>3.23</b></li><li class=""><span>Yuba</span><span class="tr"><i style="width:64.6%"></i></span><b>3.23</b></li><li class=""><span>Alameda</span><span class="tr"><i style="width:64.2%"></i></span><b>3.21</b></li><li class=""><span>Placer</span><span class="tr"><i style="width:63.9%"></i></span><b>3.19</b></li><li class=""><span>Contra Costa</span><span class="tr"><i style="width:61.7%"></i></span><b>3.09</b></li></ul>
+      <p class="bars-note">Mean composite risk index (scale 1–5). The top four counties, in blue, are all in the Sierra Nevada foothills.</p>
       <details>
         <summary>Read the write-up</summary>
         <dl class="story">
-          <dt>Question</dt><dd>Which areas need wildfire management and evacuation planning first?</dd>
-          <dt>Method</dt><dd>Combined wildfire hazard, population, and road network layers into one index. <span class="todo">[Add weights or how layers were scored.]</span></dd>
-          <dt>Finding</dt><dd>Some areas, including parts of the Sierra Nevada foothills, show possible evacuation bottlenecks.</dd>
-          <dt>Limits</dt><dd class="todo">[Add one honest limitation, e.g. data resolution or weighting choices.]</dd>
+          <dt>Question</dt><dd>Where do high wildfire hazard and many people overlap, so that evacuation planning and resources should go first?</dd>
+          <dt>Method</dt><dd>Projected all layers to NAD 1983 Contiguous USA Albers and clipped them to California. Census block-group population density (log-transformed) and USDA Wildfire Hazard Potential were reclassified to 1–5, then combined with a weighted overlay (60% hazard, 40% density). Zonal statistics gave a mean index per county.</dd>
+          <dt>Finding</dt><dd>Risk is highest in the Sierra Nevada foothills and around the San Francisco and Sacramento areas, and lowest in the southeastern desert. CAL FIRE historical perimeters largely overlap the high-risk zones. Calaveras, El Dorado, Amador and Nevada counties rank highest. Many foothill areas are served by only one or two main roads.</dd>
+          <dt>Limits</dt><dd>Only primary and secondary roads were used, so forest service and unpaved roads are missing. Population density stands in for exposure; the number of people inside high-risk zones was not counted.</dd>
+          <dt>Next</dt><dd>Count exposed population, add a fuller road network, include age and income, and test future climate scenarios.</dd>
         </dl>
       </details>
-      <div class="links"><a href="#contact">Ask me for the full report</a></div>
+      <div class="links"><a href="files/Wildfire_Risk_Report.docx">Full report (Word)</a></div>
     </article>
 
     <!-- Project 4 -->
     <article class="proj">
       <div class="proj-body">
-        <span class="badge done"><i></i>Completed (coursework)</span>
+        <span class="badge done"><i></i>Completed · team project with Daniel McMoore</span>
         <h3>SO₂ pollution trends across the U.S.</h3>
-        <p class="lede">Past and projected sulfur dioxide patterns from climate model data, compared with population.</p>
-        <ul class="tags"><li>GFDL-ESM4</li><li>Regression</li><li>Climate data</li></ul>
+        <p class="lede">How SO₂ emissions in the contiguous U.S. change from 1981 to 2100 in a climate model, and how they relate to population.</p>
+        <ul class="tags"><li>GFDL-ESM4</li><li>SSP5-8.5</li><li>Python</li><li>Linear regression</li></ul>
       </div>
       <figure class="fig">
-        <div class="ph">Add a figure: SO₂ trend map or regression plot<br>(save as images/so2-trends.png)</div>
-        <figcaption>SO₂ patterns and per-capita emissions.</figcaption>
+        <img src="images/so2-change-map.jpg" alt="Map of North America showing change in SO2 emission rate, 2071–2100 minus 1981–2010, with decreases over the eastern and Midwestern U.S." loading="lazy">
+        <figcaption>Change in SO₂ emission rate, 2071–2100 minus 1981–2010 (GFDL-ESM4).</figcaption>
+      </figure>
+      <figure class="fig">
+        <img src="images/so2-sector.jpg" alt="Line chart of SO2 emissions by sector from 2020 to 2100 under SSP5-8.5" loading="lazy">
+        <figcaption>SO₂ emissions by sector, 2020–2100 (SSP5-8.5).</figcaption>
       </figure>
       <details>
         <summary>Read the write-up</summary>
         <dl class="story">
-          <dt>Question</dt><dd>How do SO₂ levels change over time, and how do they relate to where people live?</dd>
-          <dt>Method</dt><dd>Analyzed GFDL-ESM4 output for the contiguous U.S. alongside population statistics, using regression.</dd>
-          <dt>Finding</dt><dd class="todo">[Add your main result.]</dd>
-          <dt>Limits</dt><dd class="todo">[Add one limitation.]</dd>
+          <dt>Question</dt><dd>How do SO₂ levels change over time across the U.S., and how do they relate to where people live?</dd>
+          <dt>Method</dt><dd>Used GFDL-ESM4 total SO₂ emission rate (historical and SSP5-8.5 runs, 1° × 1.25° grid) and compared annual means, differences between periods, and emissions by sector. State population and SO₂ levels were compared with per-capita values and linear regression.</dd>
+          <dt>Finding</dt><dd>The model shows SO₂ emissions falling by the end of the century, with the largest decreases over the eastern and Midwestern U.S. Total emissions drop from about 3.1 to about 1.5 Mt per year between 2020 and 2100, and industry is the largest sector. Less populated states such as Alaska, Wyoming and Vermont have higher SO₂ per person, and the regression showed no meaningful link between population and SO₂ level.</dd>
+          <dt>Limits</dt><dd>The model cannot include future policy and its resolution is coarse. Population alone leaves out industry, technology and regulation, which likely explain more of the pattern.</dd>
+          <dt>Next</dt><dd>Add economic, technology and policy factors (for example the Clean Air Act and state rules) in a causal model.</dd>
         </dl>
       </details>
-      <div class="links"><a href="#contact">Ask me for the full report</a></div>
+      <div class="links"><a href="files/SO2_Presentation.pdf">Presentation slides (PDF)</a></div>
     </article>
   </div>
 </section>
