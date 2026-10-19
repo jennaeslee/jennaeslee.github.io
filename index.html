@@ -119,6 +119,19 @@ footer{padding:28px 0 48px;color:var(--muted);font-size:14px}
 .bars-note{padding:0 28px 14px;margin:0;font-size:14px;color:var(--muted)}
 .fig.map img{max-width:560px;margin:0 auto}
 @media (max-width:640px){.bars{padding-left:20px;padding-right:20px}.bars li{grid-template-columns:84px 1fr 40px}.bars-note{padding-left:20px;padding-right:20px}}
+
+.split{display:grid;grid-template-columns:minmax(0,340px) 1fr;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.split .fig{border:0;border-right:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between}
+.split .fig.map img{width:100%;max-width:none;margin:0;height:auto}
+.split .fig figcaption{padding:10px 16px;font-size:13px}
+.split .side{display:flex;flex-direction:column;justify-content:center;padding:8px 0}
+.split .bars{border-top:0;padding:12px 28px 4px}
+.split .bars-note{padding:0 28px 12px}
+@media (max-width:720px){
+  .split{grid-template-columns:1fr}
+  .split .fig{border-right:0;border-bottom:1px solid var(--line);align-items:center}
+  .split .fig.map img{max-width:340px}
+}
 </style>
 </head>
 <body>
@@ -235,12 +248,16 @@ footer{padding:28px 0 48px;color:var(--muted);font-size:14px}
         <p class="lede">A composite index that combines wildfire hazard and population density to rank California’s 58 counties by disaster-management priority.</p>
         <ul class="tags"><li>ArcGIS Pro</li><li>Weighted overlay</li><li>Zonal statistics</li><li>Risk index</li></ul>
       </div>
-      <figure class="fig map">
+      <div class="split">
+        <figure class="fig map">
         <img src="images/wildfire-risk-map.jpg" alt="Map of California showing the composite risk index from 1 (green) to 5 (red), with roads and historical fire perimeters" loading="lazy">
         <figcaption>Composite Risk Index (1–5) with primary and secondary roads and historical fire perimeters.</figcaption>
       </figure>
-      <ul class="bars" aria-label="Top 10 counties by mean composite risk index"><li class="top"><span>Calaveras</span><span class="tr"><i style="width:68.5%"></i></span><b>3.425</b></li><li class="top"><span>El Dorado</span><span class="tr"><i style="width:68.4%"></i></span><b>3.421</b></li><li class="top"><span>Amador</span><span class="tr"><i style="width:68.3%"></i></span><b>3.416</b></li><li class="top"><span>Nevada</span><span class="tr"><i style="width:66.7%"></i></span><b>3.333</b></li><li class=""><span>Orange</span><span class="tr"><i style="width:64.8%"></i></span><b>3.241</b></li><li class=""><span>Santa Cruz</span><span class="tr"><i style="width:64.7%"></i></span><b>3.234</b></li><li class=""><span>Yuba</span><span class="tr"><i style="width:64.6%"></i></span><b>3.228</b></li><li class=""><span>Alameda</span><span class="tr"><i style="width:64.2%"></i></span><b>3.210</b></li><li class=""><span>Placer</span><span class="tr"><i style="width:63.9%"></i></span><b>3.194</b></li><li class=""><span>Contra Costa</span><span class="tr"><i style="width:61.7%"></i></span><b>3.086</b></li></ul>
-      <p class="bars-note">Mean composite risk index (scale 1–5). The top four counties, in blue, are all in the Sierra Nevada foothills.</p>
+        <div class="side">
+          <ul class="bars" aria-label="Top 10 counties by mean composite risk index"><li class="top"><span>Calaveras</span><span class="tr"><i style="width:68.5%"></i></span><b>3.425</b></li><li class="top"><span>El Dorado</span><span class="tr"><i style="width:68.4%"></i></span><b>3.421</b></li><li class="top"><span>Amador</span><span class="tr"><i style="width:68.3%"></i></span><b>3.416</b></li><li class="top"><span>Nevada</span><span class="tr"><i style="width:66.7%"></i></span><b>3.333</b></li><li class=""><span>Orange</span><span class="tr"><i style="width:64.8%"></i></span><b>3.241</b></li><li class=""><span>Santa Cruz</span><span class="tr"><i style="width:64.7%"></i></span><b>3.234</b></li><li class=""><span>Yuba</span><span class="tr"><i style="width:64.6%"></i></span><b>3.228</b></li><li class=""><span>Alameda</span><span class="tr"><i style="width:64.2%"></i></span><b>3.210</b></li><li class=""><span>Placer</span><span class="tr"><i style="width:63.9%"></i></span><b>3.194</b></li><li class=""><span>Contra Costa</span><span class="tr"><i style="width:61.7%"></i></span><b>3.086</b></li></ul>
+          <p class="bars-note">Mean composite risk index (scale 1–5). The top four counties, in blue, are all in the Sierra Nevada foothills.</p>
+        </div>
+      </div>
       <details>
         <summary>Read the write-up</summary>
         <dl class="story">
