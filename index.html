@@ -1,511 +1,299 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Jenna Eunseo Lee's portfolio in atmospheric science, weather prediction, climate data, and quantitative weather risk.">
-  <title>Jenna Eunseo Lee | Weather & Data</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jenna Eunseo Lee | Weather & Data</title>
+<meta name="description" content="Projects in numerical weather prediction, climate data, and weather risk by Jenna Eunseo Lee.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f2f6f9; --surface:#ffffff; --ink:#14222e; --muted:#566878; --line:#d3dde5;
+  --accent:#1f6f8b; --accent-ink:#ffffff; --live:#2f8f5b; --wip:#b7791f;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1a23; --surface:#16252f; --ink:#e7eef3; --muted:#9bb0bf; --line:#27394600;
+    --line:#2a3d4b; --accent:#6cc0dc; --accent-ink:#0f1a23; --live:#5cc08a; --wip:#e0a94a;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1a23; --surface:#16252f; --ink:#e7eef3; --muted:#9bb0bf;
+  --line:#2a3d4b; --accent:#6cc0dc; --accent-ink:#0f1a23; --live:#5cc08a; --wip:#e0a94a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+a:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:980px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.15;margin:0}
 
-  <style>
-    :root {
-      --bg: #0b1728;
-      --panel: #12243a;
-      --blue: #62adff;
-      --text: #edf4ff;
-      --muted: #afc0d4;
-      --border: #29415c;
-    }
+/* nav */
+header.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+.brand{font-family:var(--serif);font-weight:600;font-size:19px;text-decoration:none;color:var(--ink)}
+nav a{margin-left:22px;color:var(--muted);text-decoration:none;font-size:15px}
+nav a:hover{color:var(--ink)}
 
-    * {
-      box-sizing: border-box;
-    }
+/* hero */
+.hero{position:relative;overflow:hidden;padding:96px 0 72px;border-bottom:1px solid var(--line)}
+.hero svg{position:absolute;right:-40px;top:0;width:620px;max-width:90%;height:100%;opacity:.55;pointer-events:none}
+.hero svg path{fill:none;stroke:var(--accent);stroke-width:1.2}
+.hero .wrap{position:relative}
+.hero h1{font-size:clamp(44px,8vw,84px);letter-spacing:-.02em;max-width:11ch}
+.hero p{max-width:52ch;color:var(--muted);font-size:19px;margin:22px 0 0}
+.hero .where{margin-top:26px;font-size:15px;color:var(--muted)}
+.hero .where a{margin-right:18px}
 
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 24px;
-    }
+section{padding:72px 0;border-bottom:1px solid var(--line)}
+section>.wrap>h2{font-size:34px;margin-bottom:8px}
+.sub{color:var(--muted);margin:0 0 32px;max-width:60ch}
 
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Arial, sans-serif;
-      line-height: 1.75;
-    }
+/* now */
+.now{background:var(--surface)}
+.now-card{border-left:4px solid var(--wip);padding:4px 0 4px 22px}
+.now-card h3{font-size:24px}
+.now-card p{margin:8px 0 0;max-width:62ch}
+.stamp{font-size:14px;color:var(--muted)}
 
-    a {
-      color: var(--blue);
-      text-decoration: none;
-    }
+/* projects */
+.proj{background:var(--surface);border:1px solid var(--line);border-radius:10px;margin-bottom:28px;overflow:hidden}
+.proj-body{padding:26px 28px 8px}
+.badge{display:inline-flex;align-items:center;gap:7px;font-size:14px;color:var(--muted)}
+.badge i{width:9px;height:9px;border-radius:50%;background:var(--wip)}
+.badge.done i{background:var(--live)}
+.proj h3{font-size:27px;margin:8px 0 6px}
+.proj .lede{margin:0 0 16px;max-width:64ch}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px;padding:0;list-style:none}
+.tags li{font-size:13px;border:1px solid var(--line);border-radius:999px;padding:2px 11px;color:var(--muted)}
+.fig{margin:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg)}
+.fig img{display:block;width:100%;height:auto}
+.fig .ph{display:flex;align-items:center;justify-content:center;min-height:220px;padding:20px;text-align:center;color:var(--muted);font-size:14px;
+  background:repeating-linear-gradient(135deg,transparent 0 12px,color-mix(in srgb,var(--line) 45%,transparent) 12px 13px)}
+.fig figcaption{padding:10px 28px;font-size:14px;color:var(--muted);border-top:1px solid var(--line)}
+details{padding:0 28px}
+summary{cursor:pointer;padding:16px 0;font-weight:500;color:var(--accent);list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+";display:inline-block;width:20px;font-weight:500}
+details[open] summary::before{content:"−"}
+.story{display:grid;grid-template-columns:150px 1fr;gap:6px 24px;padding:4px 0 24px;margin:0}
+.story dt{font-family:var(--serif);font-weight:600;font-size:18px}
+.story dd{margin:0 0 14px;max-width:62ch}
+.todo{color:var(--muted);font-style:italic}
+.links{display:flex;gap:18px;padding:0 28px 22px;font-size:15px}
 
-    a:hover {
-      text-decoration: underline;
-    }
+/* notes */
+.log{list-style:none;margin:0;padding:0;max-width:680px}
+.log li{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:14px 0;border-top:1px solid var(--line)}
+.log time{color:var(--muted);font-size:15px}
 
-    .container {
-      width: min(100% - 40px, 1000px);
-      margin: auto;
-    }
+/* contact */
+.contact{border-bottom:0}
+.contact .big{font-family:var(--serif);font-size:clamp(28px,5vw,44px);line-height:1.2;max-width:20ch;margin:0 0 24px}
+.btn{display:inline-block;background:var(--accent);color:var(--accent-ink);padding:11px 20px;border-radius:6px;text-decoration:none;font-weight:500;margin-right:10px}
+.btn.alt{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+footer{padding:28px 0 48px;color:var(--muted);font-size:14px}
 
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      padding: 24px 0;
-    }
-
-    nav strong {
-      font-size: 1.1rem;
-      letter-spacing: 0.5px;
-    }
-
-    nav div {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      font-size: 0.88rem;
-    }
-
-    .hero {
-      padding: 90px 0 85px;
-    }
-
-    .eyebrow {
-      color: var(--blue);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      font-size: clamp(3rem, 8vw, 5.5rem);
-      line-height: 1.05;
-      letter-spacing: -3px;
-      margin: 20px 0;
-    }
-
-    h2 {
-      font-size: 2rem;
-      letter-spacing: -0.5px;
-      margin: 8px 0 24px;
-    }
-
-    h3 {
-      font-size: 1.15rem;
-      line-height: 1.4;
-      margin: 0 0 8px;
-    }
-
-    p {
-      margin-top: 8px;
-    }
-
-    .intro {
-      max-width: 680px;
-      color: var(--muted);
-      font-size: 1.12rem;
-    }
-
-    .muted {
-      color: var(--muted);
-    }
-
-    .button {
-      display: inline-block;
-      margin: 18px 10px 0 0;
-      padding: 10px 18px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      transition: 0.2s ease;
-    }
-
-    .button:hover {
-      background: var(--panel);
-      text-decoration: none;
-    }
-
-    .primary {
-      background: var(--blue);
-      color: #071526;
-      font-weight: 700;
-    }
-
-    .primary:hover {
-      background: #8ac2ff;
-    }
-
-    section {
-      padding: 45px 0;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      min-width: 0;
-      padding: 25px;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-    }
-
-    .card p {
-      font-size: 0.96rem;
-    }
-
-    .tag {
-      display: inline-block;
-      margin: 5px 4px 0 0;
-      padding: 3px 10px;
-      border-radius: 20px;
-      background: #203b59;
-      color: #cfe4ff;
-      font-size: 0.78rem;
-    }
-
-    .timeline {
-      border-left: 2px solid var(--border);
-      padding-left: 24px;
-      margin-left: 6px;
-    }
-
-    .timeline-item {
-      position: relative;
-      margin: 0 0 30px;
-    }
-
-    .timeline-item::before {
-      content: "";
-      position: absolute;
-      left: -31px;
-      top: 10px;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--blue);
-    }
-
-    .status {
-      color: var(--blue);
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-
-    footer {
-      margin-top: 50px;
-      padding: 30px 0;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 0.88rem;
-    }
-
-    @media (max-width: 650px) {
-      nav {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      nav div {
-        gap: 12px;
-      }
-
-      .hero {
-        padding: 55px 0;
-      }
-
-      h1 {
-        letter-spacing: -1.5px;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      section {
-        padding: 32px 0;
-      }
-    }
-  </style>
+@media (max-width:640px){
+  nav a{margin-left:14px;font-size:14px}
+  .hero{padding:64px 0 48px}
+  .story{grid-template-columns:1fr}
+  .story dd{margin-bottom:10px}
+  .proj-body,details,.links{padding-left:20px;padding-right:20px}
+  .fig figcaption{padding:10px 20px}
+  .log li{grid-template-columns:1fr;gap:2px}
+}
+</style>
 </head>
-
 <body>
-  <header class="container">
-    <nav>
-      <strong>JENNA EUNSEO LEE</strong>
-      <div>
-        <a href="#about">About</a>
-        <a href="#education">Education</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-      </div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">Jenna Eunseo Lee</a>
+    <nav aria-label="Main">
+      <a href="#now">Now</a>
+      <a href="#projects">Projects</a>
+      <a href="#notes">Notes</a>
+      <a href="#contact">Contact</a>
     </nav>
+  </div>
+</header>
 
-    <div class="hero">
-      <p class="eyebrow">
-        Atmospheric Science · Data Science · Weather Risk
-      </p>
+<main id="top">
 
-      <h1>Weather<br>meets Data.</h1>
+<!-- HERO: isobar-style contour lines are the one decorative element -->
+<div class="hero">
+  <svg viewBox="0 0 620 520" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
+    <path d="M20 430C120 380 170 300 260 290S430 330 520 250 610 120 600 40"/>
+    <path d="M20 470C140 420 200 340 280 330S450 370 545 290 620 170 615 80"/>
+    <path d="M20 390C100 340 150 260 240 250S410 290 495 210 585 80 575 0"/>
+    <path d="M40 510C170 460 230 380 305 370S470 410 570 330 625 220 620 120"/>
+    <path d="M10 350C80 300 130 220 220 210S390 250 470 170 560 40 550-30"/>
+    <circle cx="330" cy="215" r="34" style="fill:none"/>
+    <circle cx="330" cy="215" r="64" style="fill:none"/>
+    <circle cx="330" cy="215" r="98" style="fill:none"/>
+  </svg>
+  <div class="wrap">
+    <h1>Weather meets data.</h1>
+    <p>I build forecast corrections, risk maps, and climate analyses, and I post them here while they are still being worked on.</p>
+    <p class="where">M.S. student, Atmospheric &amp; Oceanic Sciences, UW–Madison<br>
+      <a href="#projects">See the projects</a>
+      <a href="https://www.linkedin.com/in/jenna-eunseo-lee/">Résumé on LinkedIn</a>
+    </p>
+  </div>
+</div>
 
-      <p class="intro">
-        I'm a master's student in Atmospheric and Oceanic Sciences
-        at the University of Wisconsin–Madison, interested in
-        numerical weather prediction, computational methods, and
-        data-driven approaches to understanding weather-related risk.
-      </p>
-
-      <a class="button primary" href="#projects">
-        Explore Projects ↓
-      </a>
-
-      <a class="button"
-         href="https://www.linkedin.com/in/jenna-eunseo-lee/"
-         target="_blank"
-         rel="noopener noreferrer">
-        LinkedIn ↗
-      </a>
+<!-- NOW -->
+<section id="now" class="now">
+  <div class="wrap">
+    <h2>Working on now</h2>
+    <p class="sub">What is open on my laptop this week. <span class="stamp">Last updated: <time datetime="2026-10-18">Oct 18, 2026</time></span></p>
+    <div class="now-card">
+      <h3>Forecast post-processing for WxChallenge</h3>
+      <p>Testing whether a simple bias correction in Python makes model forecasts closer to observed temperatures. <span class="todo">[Edit: one sentence on this week's step, e.g. what you tried or what broke.]</span></p>
     </div>
-  </header>
+  </div>
+</section>
 
-  <main class="container">
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <h2>Projects</h2>
+    <p class="sub">Each project opens into a short write-up: the question, the method, what I found, and what is next.</p>
 
-    <section id="about">
-      <p class="eyebrow">01 / About</p>
-      <h2>About Me</h2>
-
-      <p class="muted">
-        I'm an Atmospheric Science master's student at the
-        University of Wisconsin–Madison with an interdisciplinary
-        background in atmospheric science, climate data analysis,
-        and geospatial analysis.
-      </p>
-
-      <p class="muted">
-        Through academic projects, I've explored climate model
-        data, air pollution trends, and wildfire risk assessment
-        using GIS. I'm particularly interested in numerical weather
-        prediction, machine learning, and computational approaches
-        to analyzing complex atmospheric systems.
-      </p>
-
-      <p class="muted">
-        My long-term goal is to connect weather science with
-        quantitative decision-making, particularly in weather risk
-        assessment, energy demand forecasting, and financial
-        applications of weather data.
-      </p>
-    </section>
-
-    <section id="education">
-      <p class="eyebrow">02 / Education</p>
-      <h2>Education</h2>
-
-      <div class="timeline">
-        <div class="timeline-item">
-          <h3>University of Wisconsin–Madison</h3>
-          <p class="muted">
-            M.S. in Atmospheric and Oceanic Sciences · 2026–2027
-          </p>
-          <p>
-            Graduate studies focused on atmospheric science,
-            data analysis, and computational approaches to weather
-            and climate problems.
-          </p>
-        </div>
-
-        <div class="timeline-item">
-          <h3>University of Hawaiʻi at Mānoa</h3>
-          <p class="muted">
-            B.S. in Atmospheric Sciences · 2024–2026
-          </p>
-          <p>
-            Academic work involving atmospheric science,
-            climate modeling, air pollution analysis, and
-            geospatial risk assessment.
-          </p>
-        </div>
+    <!-- Project 1 -->
+    <article class="proj">
+      <div class="proj-body">
+        <span class="badge"><i></i>In progress</span>
+        <h3>Weather forecast post-processing</h3>
+        <p class="lede">Bias-correcting numerical weather prediction output for the WxChallenge forecasting competition.</p>
+        <ul class="tags"><li>Python</li><li>NWP</li><li>Bias correction</li><li>Forecast verification</li></ul>
       </div>
-    </section>
+      <figure class="fig">
+        <!-- Replace the .ph div with: <img src="images/wxchallenge-error.png" alt="Forecast error before and after correction"> -->
+        <div class="ph">Add a figure: forecast error before vs. after correction<br>(save as images/wxchallenge-error.png)</div>
+        <figcaption>Raw vs. corrected forecast error.</figcaption>
+      </figure>
+      <details>
+        <summary>Read the write-up</summary>
+        <dl class="story">
+          <dt>Question</dt><dd>Can a simple statistical correction reduce systematic error in raw model forecasts?</dd>
+          <dt>Method</dt><dd>Python workflow that compares model forecasts with observations and applies a bias correction. <span class="todo">[Add which variables, stations, and period.]</span></dd>
+          <dt>Finding</dt><dd class="todo">[Add your result, ideally one number, e.g. error before → after.]</dd>
+          <dt>Next</dt><dd class="todo">[Add what you will try next.]</dd>
+        </dl>
+      </details>
+      <div class="links"><a href="https://github.com/YOUR-USERNAME/REPO-NAME">Code on GitHub</a></div>
+    </article>
 
-    <section id="projects">
-      <p class="eyebrow">03 / Selected Work</p>
-      <h2>Projects</h2>
-
-      <div class="grid">
-
-        <article class="card">
-          <p class="status">ONGOING</p>
-          <h3>Weather Forecast Post-Processing</h3>
-          <p class="muted">
-            WxChallenge · Python · Forecast Bias Correction
-          </p>
-          <p>
-            Developing and applying a Python-based approach to
-            post-process numerical weather prediction forecasts
-            for the WxChallenge forecasting competition.
-          </p>
-          <p>
-            The project explores forecast bias correction and
-            methods for improving prediction accuracy.
-          </p>
-          <span class="tag">Python</span>
-          <span class="tag">NWP</span>
-          <span class="tag">Forecasting</span>
-          <span class="tag">Model Evaluation</span>
-        </article>
-
-        <article class="card">
-          <p class="status">ACADEMIC PROJECT</p>
-          <h3>Wildfire Risk & Evacuation Prioritization</h3>
-          <p class="muted">
-            California · ArcGIS Pro · Spatial Analysis
-          </p>
-          <p>
-            Developed a composite risk index to identify
-            high-priority wildfire management and evacuation
-            areas in California by integrating wildfire hazard,
-            population, and road network information.
-          </p>
-          <p>
-            Examined geographic patterns of wildfire risk and
-            potential evacuation bottlenecks, including areas
-            in the Sierra Nevada foothills.
-          </p>
-          <span class="tag">GIS</span>
-          <span class="tag">ArcGIS Pro</span>
-          <span class="tag">Risk Assessment</span>
-        </article>
-
-        <article class="card">
-          <p class="status">ACADEMIC PROJECT</p>
-          <h3>SO₂ Pollution Trends & Analysis</h3>
-          <p class="muted">
-            Climate Modeling · GFDL-ESM4
-          </p>
-          <p>
-            Analyzed historical and future sulfur dioxide (SO₂)
-            pollution patterns across the contiguous United States
-            using climate model data and population statistics.
-          </p>
-          <p>
-            Investigated long-term pollution trends and the
-            relationship between population patterns and
-            per-capita emissions.
-          </p>
-          <span class="tag">Climate Data</span>
-          <span class="tag">Statistical Analysis</span>
-          <span class="tag">Regression</span>
-        </article>
-
-        <article class="card">
-          <p class="status">IN PROGRESS</p>
-          <h3>Heating & Cooling Degree Days</h3>
-          <p class="muted">
-            Climate Data · Energy Demand · Python
-          </p>
-          <p>
-            Analyzing long-term heating and cooling degree days
-            across U.S. cities to investigate climate trends,
-            year-to-year variability, and temperature-related
-            energy demand.
-          </p>
-          <p>
-            The goal is to better understand weather-related
-            energy risks and their potential applications in
-            weather-sensitive financial markets.
-          </p>
-          <span class="tag">Python</span>
-          <span class="tag">Pandas</span>
-          <span class="tag">Climate Trends</span>
-          <span class="tag">Energy Risk</span>
-        </article>
-
+    <!-- Project 2 -->
+    <article class="proj">
+      <div class="proj-body">
+        <span class="badge"><i></i>In progress</span>
+        <h3>Heating &amp; cooling degree days</h3>
+        <p class="lede">Long-term temperature-driven energy demand across U.S. cities, with an eye on weather-sensitive markets.</p>
+        <ul class="tags"><li>Python</li><li>Pandas</li><li>Climate trends</li><li>Energy risk</li></ul>
       </div>
-    </section>
+      <figure class="fig">
+        <!-- Replace with a chart image, or embed an interactive chart (Plotly/Altair export) in an <iframe> -->
+        <div class="ph">Add a figure: HDD/CDD trend by city<br>(save as images/degree-days.png)</div>
+        <figcaption>Degree-day trends across U.S. cities.</figcaption>
+      </figure>
+      <details>
+        <summary>Read the write-up</summary>
+        <dl class="story">
+          <dt>Question</dt><dd>How have heating and cooling needs changed over time, and how much do they vary year to year?</dd>
+          <dt>Method</dt><dd>Computed degree days from city temperature records and compared trends and variability. <span class="todo">[Add data source and cities.]</span></dd>
+          <dt>Finding</dt><dd class="todo">[Add your result so far.]</dd>
+          <dt>Next</dt><dd>Connect the patterns to energy-demand risk. <span class="todo">[Add specifics.]</span></dd>
+        </dl>
+      </details>
+      <div class="links"><a href="https://github.com/YOUR-USERNAME/REPO-NAME">Code on GitHub</a></div>
+    </article>
 
-    <section id="skills">
-      <p class="eyebrow">04 / Technical Toolkit</p>
-      <h2>Skills & Interests</h2>
-
-      <div class="grid">
-        <article class="card">
-          <h3>Programming & Data Analysis</h3>
-          <span class="tag">Python</span>
-          <span class="tag">NumPy</span>
-          <span class="tag">Pandas</span>
-          <span class="tag">Matplotlib</span>
-          <span class="tag">Fortran (Basic)</span>
-        </article>
-
-        <article class="card">
-          <h3>Atmospheric Science</h3>
-          <span class="tag">Numerical Weather Prediction</span>
-          <span class="tag">Climate Modeling</span>
-          <span class="tag">Forecast Post-Processing</span>
-          <span class="tag">Weather Analysis</span>
-        </article>
-
-        <article class="card">
-          <h3>Geospatial Analysis</h3>
-          <span class="tag">ArcGIS Pro</span>
-          <span class="tag">GIS</span>
-          <span class="tag">Spatial Analysis</span>
-        </article>
-
-        <article class="card">
-          <h3>Research Interests</h3>
-          <span class="tag">Machine Learning</span>
-          <span class="tag">Weather Risk</span>
-          <span class="tag">Energy Demand</span>
-          <span class="tag">Quantitative Meteorology</span>
-        </article>
+    <!-- Project 3 -->
+    <article class="proj">
+      <div class="proj-body">
+        <span class="badge done"><i></i>Completed (coursework)</span>
+        <h3>Wildfire risk &amp; evacuation priority, California</h3>
+        <p class="lede">A composite index that flags where wildfire hazard, population, and limited roads overlap.</p>
+        <ul class="tags"><li>ArcGIS Pro</li><li>Spatial analysis</li><li>Risk index</li></ul>
       </div>
+      <figure class="fig">
+        <!-- Replace with a map export, e.g. images/wildfire-risk-map.png -->
+        <div class="ph">Add a figure: risk index map<br>(save as images/wildfire-risk-map.png)</div>
+        <figcaption>Composite risk index, including the Sierra Nevada foothills.</figcaption>
+      </figure>
+      <details>
+        <summary>Read the write-up</summary>
+        <dl class="story">
+          <dt>Question</dt><dd>Which areas need wildfire management and evacuation planning first?</dd>
+          <dt>Method</dt><dd>Combined wildfire hazard, population, and road network layers into one index. <span class="todo">[Add weights or how layers were scored.]</span></dd>
+          <dt>Finding</dt><dd>Some areas, including parts of the Sierra Nevada foothills, show possible evacuation bottlenecks.</dd>
+          <dt>Limits</dt><dd class="todo">[Add one honest limitation, e.g. data resolution or weighting choices.]</dd>
+        </dl>
+      </details>
+      <div class="links"><a href="#contact">Ask me for the full report</a></div>
+    </article>
 
-      <p class="muted">
-        Technical skills and interests are presented separately
-        where appropriate. Tools and methods should reflect
-        actual experience.
-      </p>
-    </section>
+    <!-- Project 4 -->
+    <article class="proj">
+      <div class="proj-body">
+        <span class="badge done"><i></i>Completed (coursework)</span>
+        <h3>SO₂ pollution trends across the U.S.</h3>
+        <p class="lede">Past and projected sulfur dioxide patterns from climate model data, compared with population.</p>
+        <ul class="tags"><li>GFDL-ESM4</li><li>Regression</li><li>Climate data</li></ul>
+      </div>
+      <figure class="fig">
+        <div class="ph">Add a figure: SO₂ trend map or regression plot<br>(save as images/so2-trends.png)</div>
+        <figcaption>SO₂ patterns and per-capita emissions.</figcaption>
+      </figure>
+      <details>
+        <summary>Read the write-up</summary>
+        <dl class="story">
+          <dt>Question</dt><dd>How do SO₂ levels change over time, and how do they relate to where people live?</dd>
+          <dt>Method</dt><dd>Analyzed GFDL-ESM4 output for the contiguous U.S. alongside population statistics, using regression.</dd>
+          <dt>Finding</dt><dd class="todo">[Add your main result.]</dd>
+          <dt>Limits</dt><dd class="todo">[Add one limitation.]</dd>
+        </dl>
+      </details>
+      <div class="links"><a href="#contact">Ask me for the full report</a></div>
+    </article>
+  </div>
+</section>
 
-    <section id="contact">
-      <p class="eyebrow">05 / Contact</p>
-      <h2>Let's Connect</h2>
+<!-- NOTES / BUILD LOG -->
+<section id="notes">
+  <div class="wrap">
+    <h2>Notes</h2>
+    <p class="sub">Short entries on what I tried and what I learned. Newest first.</p>
+    <ul class="log">
+      <li><time datetime="2026-10-18">Oct 18, 2026</time><span class="todo">[Write one or two sentences about something you worked on or learned.]</span></li>
+      <li><time datetime="2026-10-11">Oct 11, 2026</time><span class="todo">[Another short entry.]</span></li>
+    </ul>
+  </div>
+</section>
 
-      <p class="muted">
-        I'm interested in the intersection of atmospheric science,
-        computational methods, and data-driven weather risk.
-      </p>
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <p class="big">Want to talk about weather, data, or risk?</p>
+    <a class="btn" href="https://www.linkedin.com/in/jenna-eunseo-lee/">Message on LinkedIn</a>
+    <a class="btn alt" href="https://github.com/YOUR-USERNAME">GitHub profile</a>
+  </div>
+</section>
 
-      <p>
-        <a href="https://www.linkedin.com/in/jenna-eunseo-lee/"
-           target="_blank"
-           rel="noopener noreferrer">
-          LinkedIn ↗
-        </a>
-        &nbsp; · &nbsp;
-        <a href="https://github.com/"
-           target="_blank"
-           rel="noopener noreferrer">
-          GitHub ↗
-        </a>
-      </p>
-    </section>
+</main>
 
-  </main>
+<footer>
+  <div class="wrap">© 2026 Jenna Eunseo Lee</div>
+</footer>
 
-  <footer>
-    <div class="container">
-      © 2026 Jenna Eunseo Lee · Atmospheric Science & Data
-    </div>
-  </footer>
 </body>
 </html>
